@@ -18,7 +18,7 @@ const checkKey = (key: string) =>
   );
 
 interface SagaDescriptor {
-  saga?: () => IterableIterator<any>;
+  saga?: any;
   mode?: string | undefined;
 }
 const checkDescriptor = (descriptor: SagaDescriptor) => {
