@@ -25,7 +25,6 @@ describe('<ReposList />', () => {
   });
 
   it('should render the repositories if loading was successful', () => {
-
     const initialState = {
       global: {
         currentUser: 'mxstbr',
@@ -36,10 +35,7 @@ describe('<ReposList />', () => {
         },
       },
     };
-    const store = configureStore(
-      initialState,
-      history,
-    );
+    const store = configureStore(initialState, history);
     const repos = [
       {
         owner: {
@@ -55,7 +51,7 @@ describe('<ReposList />', () => {
       // tslint:disable-next-line: jsx-wrap-multiline
       <Provider store={store}>
         <IntlProvider locale="en">
-          <ReposList repos={repos} error={false} loading={false}/>
+          <ReposList repos={repos} error={false} loading={false} />
         </IntlProvider>
       </Provider>,
     );

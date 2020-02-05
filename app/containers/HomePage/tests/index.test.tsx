@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 
@@ -39,8 +39,6 @@ describe('<HomePage />', () => {
     store = configureStore({}, history);
     mockedLoadRepos.mockClear();
   });
-
-  afterEach(cleanup);
 
   it('should render and match the snapshot', () => {
     const {
