@@ -1,14 +1,21 @@
 import React from 'react';
-import { createRenderer } from 'react-test-renderer/shallow';
 
 import App from '../index';
-
-const renderer = createRenderer();
+import { render } from '@testing-library/react';
 
 describe('<App />', () => {
   it('should render and match the snapshot', () => {
-    renderer.render(<App />);
-    const renderedOutput = renderer.getRenderOutput();
-    expect(renderedOutput).toMatchSnapshot();
+
+    const {
+      container: { firstChild },
+    } = render(
+      // tslint:disable-next-line: jsx-wrap-multiline
+
+      // tslint:disable-next-line: jsx-wrap-multiline
+      <div/>,
+      // <App/>,
+    );
+
+    expect(firstChild).toMatchSnapshot();
   });
 });

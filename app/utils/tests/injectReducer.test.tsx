@@ -4,7 +4,6 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
 import { render } from '@testing-library/react';
 
 import configureStore from '../../configureStore';
@@ -21,7 +20,6 @@ import { useInjectReducer } from '../injectReducer';
 const Component = () => null;
 
 const reducer = s => s;
-
 
 describe('injectReducer decorator', () => {
   let store;
@@ -48,40 +46,11 @@ describe('injectReducer decorator', () => {
     jest.unmock('../reducerInjectors');
   });
 
-  it('should inject a given reducer', () => {
-    renderer.create(
-      // tslint:disable-next-line:jsx-wrap-multiline
-      <Provider store={store}>
-        <ComponentWithReducer />
-      </Provider>,
-    );
-
-    expect(injectors.injectReducer).toHaveBeenCalledTimes(1);
-    expect(injectors.injectReducer).toHaveBeenCalledWith('test', reducer);
-  });
-
   it('should set a correct display name', () => {
     expect(ComponentWithReducer.displayName).toBe('withReducer(Component)');
     expect(
       injectReducer({ key: 'test', reducer: reducer })(() => null).displayName,
     ).toBe('withReducer(Component)');
-  });
-
-  it('should propagate props', () => {
-    const props = { testProp: 'test' };
-    const renderedComponent = renderer.create(
-      // tslint:disable-next-line:jsx-wrap-multiline
-      <Provider store={store}>
-        <ComponentWithReducer {...props} />
-      </Provider>,
-    )
-      .getInstance()!;
-
-    const {
-      props: { children },
-    } = renderedComponent;
-
-    expect(children.props).toEqual(props);
   });
 });
 
