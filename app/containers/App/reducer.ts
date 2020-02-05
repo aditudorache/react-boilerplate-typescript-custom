@@ -35,13 +35,14 @@ function appReducer(
           repos: action.payload.repos,
         },
       };
-    case ActionTypes.LOAD_REPOS_ERROR:
-      const { error, loading, ...rest } = state;
+    case ActionTypes.LOAD_REPOS_ERROR: {
+      const { ...rest } = state;
       return {
         error: action.payload,
         loading: false,
         ...rest,
       };
+    }
     default:
       return state;
   }

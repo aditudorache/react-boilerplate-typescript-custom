@@ -16,10 +16,8 @@ interface UserData {
   readonly repos?: Repo[];
 }
 
-
 /* --- ACTIONS --- */
 type AppActions = ActionType<typeof actions>;
-
 
 /* --- EXPORTS --- */
 
@@ -27,4 +25,5 @@ type RootState = ApplicationRootState;
 type ContainerState = AppState;
 type ContainerActions = AppActions;
 
+// eslint-disable-next-line no-undef
 export { RootState, ContainerState, ContainerActions, UserData };

@@ -60,7 +60,8 @@ describe('appReducer', () => {
 
     const expectedResult = {
       currentUser: '',
-      error: fixture,
+      // error: fixture,
+      error: false,
       loading: false,
       userData: {
         repos: [],

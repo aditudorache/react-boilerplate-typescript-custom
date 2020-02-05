@@ -3,7 +3,7 @@ import { RouterState } from 'connected-react-router';
 import { ContainerState as LanguageProviderState } from 'containers/LanguageProvider/types';
 import { ContainerState as AppState } from 'containers/App/types';
 import { ContainerState as HomeState } from 'containers/HomePage/types';
-import { Saga, Task } from 'redux-saga';
+import { Saga } from 'redux-saga';
 
 export interface InjectedStore extends Store {
   injectedReducers: any;

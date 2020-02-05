@@ -22,8 +22,7 @@ const renderComponent = (item, currentUser) => {
       },
     },
   };
-  const store = configureStore(
-    initialState, history);
+  const store = configureStore(initialState, history);
 
   return render(
     // tslint:disable-next-line: jsx-wrap-multiline

@@ -4,10 +4,10 @@ import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import isString from 'lodash/isString';
 
-import checkStore from './checkStore';
-import { DAEMON, ONCE_TILL_UNMOUNT, RESTART_ON_REMOUNT } from './constants';
 import { InjectedStore } from 'types';
 import React from 'react';
+import checkStore from './checkStore';
+import { DAEMON, ONCE_TILL_UNMOUNT, RESTART_ON_REMOUNT } from './constants';
 
 const allowedModes = [RESTART_ON_REMOUNT, DAEMON, ONCE_TILL_UNMOUNT];
 
@@ -33,7 +33,10 @@ const checkDescriptor = (descriptor: SagaDescriptor) => {
   );
 };
 
-export function injectSagaFactory(store: InjectedStore, isValid: boolean = false) {
+export function injectSagaFactory(
+  store: InjectedStore,
+  isValid: boolean = false,
+) {
   // tslint:disable-next-line: only-arrow-functions
   return function injectSaga(
     key: string,
@@ -68,6 +71,7 @@ export function injectSagaFactory(store: InjectedStore, isValid: boolean = false
       !hasSaga ||
       (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)
     ) {
+      // eslint-disable-next-line no-param-reassign
       store.injectedSagas[key] = {
         ...newDescriptor,
         task: store.runSaga(saga, args),
@@ -76,7 +80,10 @@ export function injectSagaFactory(store: InjectedStore, isValid: boolean = false
   };
 }
 
-export function ejectSagaFactory(store: InjectedStore, isValid: boolean = false) {
+export function ejectSagaFactory(
+  store: InjectedStore,
+  isValid: boolean = false,
+) {
   // tslint:disable-next-line: only-arrow-functions
   return function ejectSaga(key: string) {
     if (!isValid) {
@@ -92,6 +99,7 @@ export function ejectSagaFactory(store: InjectedStore, isValid: boolean = false)
         // Clean up in production; in development we need `descriptor.saga` for hot reloading
         if (process.env.NODE_ENV === 'production') {
           // Need some value to be able to detect `ONCE_TILL_UNMOUNT` sagas in `injectSaga`
+          // eslint-disable-next-line no-param-reassign
           store.injectedSagas[key] = 'done';
         }
       }

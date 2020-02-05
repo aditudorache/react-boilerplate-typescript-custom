@@ -2,10 +2,10 @@ import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { Provider } from 'react-redux';
 
+import { render } from '@testing-library/react';
 import Footer from '../index';
 import configureStore from '../../../configureStore';
 import history from '../../../utils/history';
-import { render } from '@testing-library/react';
 
 describe('<Footer />', () => {
   let store;

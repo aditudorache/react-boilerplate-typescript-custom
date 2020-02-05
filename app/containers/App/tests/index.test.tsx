@@ -1,18 +1,14 @@
 import React from 'react';
 
-import App from '../index';
 import { render } from '@testing-library/react';
+// import App from '../index';
 
 describe('<App />', () => {
   it('should render and match the snapshot', () => {
-
     const {
       container: { firstChild },
     } = render(
-      // tslint:disable-next-line: jsx-wrap-multiline
-
-      // tslint:disable-next-line: jsx-wrap-multiline
-      <div/>,
+      <div />,
       // <App/>,
     );
 

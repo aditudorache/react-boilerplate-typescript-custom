@@ -12,7 +12,6 @@ import { Repo } from '../../RepoListItem/types';
 describe('selectGlobal', () => {
   it('should select the global state', () => {
     const globalState = {};
-    // tslint:disable-next-line:no-object-literal-type-assertion
     const mockedState = {
       global: globalState,
     } as ApplicationRootState;
@@ -68,7 +67,7 @@ describe('makeSelectRepos', () => {
     const mockedState = {
       global: {
         userData: {
-          repos: repos,
+          repos,
         },
       },
     } as ApplicationRootState;

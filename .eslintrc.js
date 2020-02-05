@@ -6,11 +6,19 @@ const prettierOptions = JSON.parse(
 );
 
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   extends: ['airbnb', 'prettier', 'prettier/react'],
-  plugins: ['prettier', 'redux-saga', 'react', 'react-hooks', 'jsx-a11y'],
+  plugins: [
+    'jest',
+    'prettier',
+    '@typescript-eslint',
+    'redux-saga',
+    'react',
+    'react-hooks',
+    'jsx-a11y',
+  ],
   env: {
-    jest: true,
+    'jest/globals': true,
     browser: true,
     node: true,
     es6: true,
@@ -78,11 +86,22 @@ module.exports = {
     'redux-saga/no-yield-in-race': 2,
     'redux-saga/yield-effects': 2,
     'require-yield': 0,
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        args: 'after-used',
+        ignoreRestSiblings: false,
+      },
+    ],
   },
   settings: {
     'import/resolver': {
       webpack: {
         config: './internals/webpack/webpack.prod.babel.js',
+      },
+      node: {
+        extensions: ['.js', '.ts', '.jsx', '.tsx'],
       },
     },
   },

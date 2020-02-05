@@ -3,12 +3,15 @@ import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import isString from 'lodash/isString';
 
-import checkStore from './checkStore';
-import createReducer from '../reducers';
 import { InjectedStore } from 'types';
 import { Reducer } from 'redux';
+import checkStore from './checkStore';
+import createReducer from '../reducers';
 
-export function injectReducerFactory(store: InjectedStore, isValid: boolean = false) {
+export function injectReducerFactory(
+  store: InjectedStore,
+  isValid: boolean = false,
+) {
   // tslint:disable-next-line: only-arrow-functions
   return function injectReducer(key: string, reducer: Reducer<object>) {
     if (!isValid) {
@@ -29,6 +32,7 @@ export function injectReducerFactory(store: InjectedStore, isValid: boolean = fa
       return;
     }
 
+    // eslint-disable-next-line no-param-reassign
     store.injectedReducers[key] = reducer;
     store.replaceReducer(createReducer(store.injectedReducers));
   };

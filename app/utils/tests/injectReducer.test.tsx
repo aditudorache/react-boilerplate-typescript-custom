@@ -6,15 +6,14 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 
+import { createMemoryHistory } from 'history';
 import configureStore from '../../configureStore';
 import { getInjectors } from '../reducerInjectors';
 
-import { createMemoryHistory } from 'history';
+import { useInjectReducer } from '../injectReducer';
 
 const memoryHistory = createMemoryHistory();
 jest.mock('../reducerInjectors');
-
-import { useInjectReducer } from '../injectReducer';
 
 // Fixtures
 const Component = () => null;
@@ -22,6 +21,7 @@ const Component = () => null;
 const reducer = s => s;
 
 describe('injectReducer decorator', () => {
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   let store;
   let ComponentWithReducer;
   let injectReducer;
@@ -32,6 +32,7 @@ describe('injectReducer decorator', () => {
       typeof getInjectors
     >; // compiler doesn't know that it's mocked. So manually cast it.
     mockedGetInjectors.mockImplementation(() => injectors);
+    // eslint-disable-next-line global-require
     injectReducer = require('../injectReducer').default;
   });
 
@@ -40,16 +41,14 @@ describe('injectReducer decorator', () => {
     injectors = {
       injectReducer: jest.fn(),
     };
-    ComponentWithReducer = injectReducer({ key: 'test', reducer: reducer })(
-      Component,
-    );
+    ComponentWithReducer = injectReducer({ key: 'test', reducer })(Component);
     jest.unmock('../reducerInjectors');
   });
 
   it('should set a correct display name', () => {
     expect(ComponentWithReducer.displayName).toBe('withReducer(Component)');
     expect(
-      injectReducer({ key: 'test', reducer: reducer })(() => null).displayName,
+      injectReducer({ key: 'test', reducer })(() => null).displayName,
     ).toBe('withReducer(Component)');
   });
 });
@@ -70,7 +69,7 @@ describe('useInjectReducer hook', () => {
 
     store = configureStore({}, memoryHistory);
     ComponentWithReducer = () => {
-      useInjectReducer({ key: 'test', reducer: reducer });
+      useInjectReducer({ key: 'test', reducer });
       return null;
     };
   });
