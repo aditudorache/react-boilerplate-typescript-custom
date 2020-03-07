@@ -1,7 +1,7 @@
 # <Project name>
 
-This project is based on the react boilerplate that was adapted for the needs of the municipality of Amsterdam.
-See https://github.com/Amsterdam/react-boilerplate.git for more information on the react boilerplate
+This project is based on the react boilerplate that was converted to typescript
+See https://github.com/react-boilerplate/react-boilerplate and https://github.com/react-boilerplate/react-boilerplate-typescript for more information on the react boilerplate
 
 ## Requirements
 
